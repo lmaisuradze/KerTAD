@@ -67,13 +67,13 @@ end
 for i=round(size(input_map,1)/2)+1:size(input_map,1)
     ratio_zeros(i,:)=sum(input_map2(i,i-n+1:i))./n;
 end
-TF2=(ratio_zeros>.8);
+TF=(ratio_zeros>.8);
 
-%{
+
 TF3 = isoutlier(diag(map),"grubbs");  %alternatively use preprocessing(input_map)
 TF4=TF3.*(diag(map)<median(diag(map))); %only include outliers that are due to low counts
 TF2=(TF+TF4)>0;
-%}
+
 
 %Segment maps into smaller maps
 pos=1; 
